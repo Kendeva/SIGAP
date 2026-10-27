@@ -1,15 +1,18 @@
 .venv/
+venv/
 __pycache__/
 .pytest_cache/
 .streamlit/secrets.toml
+.env
 *.py[cod]
 
-# Dataset exports are downloaded locally; do not commit image datasets.
+# Downloaded image dataset for photo model
 data/raw/*
 !data/raw/.gitkeep
+data/raw_new/
 
-# Trained checkpoints and metrics are generated for each run.
+# Photo-model outputs are reproducible; keep the legacy inventory model and CSV committed
 models/*.pt
+models/*.pth
 models/metrics.json
 models/training_history.csv
-!models/.gitkeep

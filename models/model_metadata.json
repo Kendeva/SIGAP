@@ -1,0 +1,168 @@
+{
+  "model": "Decision Tree (depth 2)",
+  "selection_metric": "mean macro-F1 across 5-fold stratified CV on training split",
+  "criterion": "entropy",
+  "max_depth": 2,
+  "dataset_rows": 80,
+  "training_rows": 64,
+  "testing_rows": 16,
+  "features": [
+    "stok",
+    "terjual",
+    "hari_ke",
+    "cuaca",
+    "hari_besar",
+    "sisa_persen"
+  ],
+  "target": "label",
+  "class_counts": {
+    "safe": 30,
+    "potential_waste": 50
+  },
+  "cross_validation": {
+    "accuracy": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "precision_macro": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "recall_macro": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "f1_macro": {
+      "mean": 1.0,
+      "std": 0.0
+    }
+  },
+  "candidate_comparison": {
+    "Decision Tree (depth 2)": {
+      "accuracy": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "precision_macro": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "recall_macro": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "f1_macro": {
+        "mean": 1.0,
+        "std": 0.0
+      }
+    },
+    "Decision Tree (depth 4)": {
+      "accuracy": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "precision_macro": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "recall_macro": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "f1_macro": {
+        "mean": 1.0,
+        "std": 0.0
+      }
+    },
+    "Random Forest": {
+      "accuracy": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "precision_macro": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "recall_macro": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "f1_macro": {
+        "mean": 1.0,
+        "std": 0.0
+      }
+    },
+    "Majority-class baseline": {
+      "accuracy": {
+        "mean": 0.6256410256410256,
+        "std": 0.020512820512820485
+      },
+      "precision_macro": {
+        "mean": 0.3128205128205128,
+        "std": 0.010256410256410243
+      },
+      "recall_macro": {
+        "mean": 0.5,
+        "std": 0.0
+      },
+      "f1_macro": {
+        "mean": 0.38476190476190475,
+        "std": 0.007619047619047636
+      }
+    }
+  },
+  "holdout_metrics": {
+    "accuracy": 1.0,
+    "precision_macro": 1.0,
+    "recall_macro": 1.0,
+    "f1_macro": 1.0
+  },
+  "confusion_matrix_labels": [
+    "Safe",
+    "Potential Waste"
+  ],
+  "confusion_matrix": [
+    [
+      6,
+      0
+    ],
+    [
+      0,
+      10
+    ]
+  ],
+  "classification_report": {
+    "Safe": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 6.0
+    },
+    "Potential Waste": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 10.0
+    },
+    "accuracy": 1.0,
+    "macro avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 16.0
+    },
+    "weighted avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 16.0
+    }
+  },
+  "trained_at_utc": "2026-10-27T13:29:22.295789+00:00",
+  "data_quality": {
+    "duplicate_rows": 0,
+    "remaining_percentage_is_derived_from_stock_and_sales": true,
+    "label_separation_warning": "Labels are fully separated by remaining-stock percentage in the supplied dataset. This may reflect a rule used to create the labels rather than generalizable real-world behaviour."
+  },
+  "scope_note": "Metrics describe this small supplied dataset only. They are not a guarantee of performance on real inventory data. Model confidence is not a calibrated probability of food waste."
+}
