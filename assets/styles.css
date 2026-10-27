@@ -1,0 +1,32 @@
+:root {
+  --sigap-green: #187843;
+  --sigap-ink: #17241b;
+  --sigap-muted: #69756c;
+  --sigap-border: #e3e9e4;
+}
+
+html, body, [class*="css"] {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+[data-testid="stAppViewContainer"] {
+  background: linear-gradient(180deg, #f7faf7 0%, #ffffff 42rem);
+  color: var(--sigap-ink);
+}
+[data-testid="stHeader"] { background: transparent; }
+.block-container { max-width: 760px; padding: 2rem 1.5rem 2.5rem; }
+.brand { display: flex; align-items: center; gap: .65rem; margin: .2rem 0 2.2rem; color: var(--sigap-ink); font-size: 1.05rem; font-weight: 800; letter-spacing: -.03em; }
+.brand-icon { display: inline-flex; width: 38px; height: 38px; align-items: center; justify-content: center; border-radius: 12px; background: var(--sigap-green); color: #fff; font-size: 1.35rem; }
+.page-title { margin: 0; color: var(--sigap-ink); font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; line-height: 1.1; letter-spacing: -.055em; }
+.page-subtitle { margin: .65rem 0 1.7rem; color: var(--sigap-muted); font-size: .98rem; }
+[data-testid="stFileUploader"] { padding: .7rem; border: 1px dashed #c7d7cb; border-radius: 14px; background: rgba(255,255,255,.85); }
+[data-testid="stImage"] { margin: .8rem 0 1rem; overflow: hidden; border: 1px solid var(--sigap-border); border-radius: 14px; }
+.stButton > button { min-height: 2.9rem; border-radius: 11px; font-weight: 700; }
+.stButton > button[kind="primary"] { background: var(--sigap-green); border-color: var(--sigap-green); }
+[data-testid="stAlert"] { border-radius: 12px; }
+[data-testid="stExpander"] { margin-top: .65rem; border: 1px solid var(--sigap-border); border-radius: 12px; }
+[data-testid="stCaptionContainer"] { margin-top: 1.1rem; color: #7a857d; text-align: center; font-size: .75rem; }
+@media (max-width: 640px) {
+  .block-container { padding: 1.2rem 1rem 2rem; }
+  .brand { margin-bottom: 1.8rem; }
+  .page-title { font-size: 2.1rem; }
+}

@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.streamlit/secrets.toml
+*.py[cod]
+
+# Dataset exports are downloaded locally; do not commit image datasets.
+data/raw/*
+!data/raw/.gitkeep
+
+# Trained checkpoints and metrics are generated for each run.
+models/*.pt
+models/metrics.json
+models/training_history.csv
+!models/.gitkeep
