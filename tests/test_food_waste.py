@@ -98,3 +98,14 @@ def test_string_false_special_day_is_not_treated_as_true():
     assert _normalize_special_day("false") is False
     assert _normalize_special_day("true") is True
     assert false_result["stock"] == true_result["stock"] == 100
+
+
+def test_batch_accepts_english_csv_column_names():
+    data = pd.DataFrame([
+        {"product_name": "Apple", "stock": 100, "sold": 40, "day_index": 15, "weather_code": 0, "special_day": 0},
+    ])
+    result = predict_batch(data)
+    assert len(result) == 1
+    assert result.loc[0, "validation_status"] == "Valid"
+    assert result.loc[0, "sisa_stok"] == 60
+    assert result.loc[0, "sisa_persen"] == pytest.approx(60.0)

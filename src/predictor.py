@@ -143,7 +143,7 @@ def _normalize_special_day(value: Any) -> bool:
         return True
     if text in {"0", "false", "no", "n"}:
         return False
-    raise ValueError("hari_besar must be 0/1, true/false, or yes/no")
+    raise ValueError("special_day must be 0/1, true/false, or yes/no")
 
 
 def predict_batch(data: pd.DataFrame) -> pd.DataFrame:
@@ -156,10 +156,28 @@ def predict_batch(data: pd.DataFrame) -> pd.DataFrame:
         raise ValueError("Batch input must be a pandas DataFrame.")
     if data.empty:
         raise ValueError("The uploaded CSV contains no rows.")
+
+    # Accept the original Indonesian schema for backward compatibility and
+    # English aliases for the user-facing CSV template.
+    aliases = {
+        "stock": "stok",
+        "sold": "terjual",
+        "day_index": "hari_ke",
+        "weather_code": "cuaca",
+        "special_day": "hari_besar",
+        "remaining_percentage": "sisa_persen",
+    }
+    renamed = {source: target for source, target in aliases.items() if source in data.columns and target not in data.columns}
+    data = data.rename(columns=renamed)
     required = ["stok", "terjual", "hari_ke", "cuaca", "hari_besar"]
     missing = [column for column in required if column not in data.columns]
     if missing:
-        raise ValueError(f"CSV is missing required columns: {', '.join(missing)}")
+        english_names = {
+            "stok": "stock", "terjual": "sold", "hari_ke": "day_index",
+            "cuaca": "weather_code", "hari_besar": "special_day",
+        }
+        missing_display = [english_names.get(column, column) for column in missing]
+        raise ValueError(f"CSV is missing required columns: {', '.join(missing_display)}")
     if len(data) > 10000:
         raise ValueError("This prototype supports up to 10,000 rows per upload.")
 
@@ -177,7 +195,7 @@ def predict_batch(data: pd.DataFrame) -> pd.DataFrame:
             special = _normalize_special_day(source_row["hari_besar"])
             validate_inventory(stock, sold, day, weather, special)
             if not all(number.is_integer() for number in [stock, sold, day, weather]):
-                raise ValueError("stok, terjual, hari_ke, and cuaca must be whole numbers")
+                raise ValueError("stock, sold, day_index, and weather_code must be whole numbers")
             result = _predict_validated(int(stock), int(sold), int(day), int(weather), special)
             output.update({
                 "status": result["status"],
